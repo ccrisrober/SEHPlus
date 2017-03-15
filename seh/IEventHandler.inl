@@ -9,12 +9,6 @@ bool IEventHandler::hasEvent( )
 {
   return _customHandlers.find( EventTmpl::StaticGetUID( ) ) != _customHandlers.end( );
 }
-#ifdef SEH_EVENT_PROPAGATION
-void IEventHandler::addChildEventHandler( IEventHandler* h )
-{
-  _childrenHandlers.push_back( h );
-}
-#endif
 
 template <class T, class EventTmpl>
 void EventFunctionHandler<T, EventTmpl>::call( const Event* e )

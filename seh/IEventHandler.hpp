@@ -6,7 +6,9 @@
 
 #include <seh/api.h>
 
-#define SEH_EVENT_PROPAGATION // TODO: HARDCODED
+#ifndef SEH_WITH_EVENT_PROPAGATION
+#include <iostream>
+#endif
 
 namespace seh
 {
@@ -57,10 +59,10 @@ namespace seh
     template<class EventTmpl>
     bool hasEvent( );
 
-#ifdef SEH_EVENT_PROPAGATION
   public:
     SEH_API
     void addChildEventHandler( IEventHandler* h );
+#ifdef SEH_EVENT_PROPAGATION
   protected:
     std::vector< IEventHandler*> _childrenHandlers;
 #endif

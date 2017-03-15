@@ -28,9 +28,13 @@ set(COMMON_PROJECT_DOMAIN maldicion069)
 include(Common)
 
 # Allow warnings
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 
-option( SEH_EVENT_PROPAGATION "SEH children event propagation" ON)
+option( SEH_WITH_EVENT_PROPAGATION "SEH children event propagation" ON )
+
+if ( SEH_WITH_EVENT_PROPAGATION )
+	list( APPEND COMMON_FIND_PACKAGE_DEFINES SEH_EVENT_PROPAGATION )
+endif( )
 
 common_find_package_post( )
 

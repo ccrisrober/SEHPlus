@@ -31,6 +31,19 @@ namespace seh
     }
   }
 
+#ifdef SEH_EVENT_PROPAGATION
+  void IEventHandler::addChildEventHandler( IEventHandler* h )
+  {
+    _childrenHandlers.push_back( h );
+  }
+#else
+  void IEventHandler::addChildEventHandler( IEventHandler* )
+  {
+    std::cout << "Disable method. Please, enable SEH_EVENT_PROPAGATION option" << std::endl;
+  }
+#endif
+
+
   void IEventHandler::removeEvent( const Event* e )
   {
     CustomHandlers::iterator it = _customHandlers.find( e->GetUID( ) );
