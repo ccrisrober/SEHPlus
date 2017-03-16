@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(SEH VERSION 1.0.0 )
-set(SEH_VERSION_ABI 1)
+project(seh VERSION 1.0.0 )
+set(seh_VERSION_ABI 1)
 
 # Disable in source building
 if( "${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}" )

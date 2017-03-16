@@ -1,8 +1,8 @@
 source_group(\\ FILES CMakeLists.txt)
 
 set( SEH_PUBLIC_HEADERS
-  Event.hpp
   IEventHandler.hpp
+  Event.hpp
 )
 
 set( SEH_HEADERS

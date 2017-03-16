@@ -13,7 +13,7 @@ namespace seh
     _customHandlers.clear( );
   }
 
-  void IEventHandler::dispatchEvent( const Event* e, const bool& propagation )
+  void IEventHandler::dispatchEvent( Event* e, const bool& propagation )
   {
     CustomHandlers::iterator it = _customHandlers.find( e->GetUID( ) );
     if( it != _customHandlers.end( ) )
@@ -22,6 +22,11 @@ namespace seh
 #ifdef SEH_EVENT_PROPAGATION
       if( propagation )
       {
+        if ( !e->isEventPropagation( ) )
+        {
+          std::cout << "STOP PROP" << std::endl;
+          return;
+        }
         for( auto ieh : _childrenHandlers )
         {
           ieh->dispatchEvent( e, propagation );
@@ -43,10 +48,18 @@ namespace seh
   }
 #endif
 
-
   void IEventHandler::removeEvent( const Event* e )
   {
     CustomHandlers::iterator it = _customHandlers.find( e->GetUID( ) );
+    if( it != _customHandlers.end( ) )
+    {
+      _customHandlers.erase( it );
+    }
+  }
+
+  void IEventHandler::removeEvent( const std::string name )
+  {
+    CustomHandlers::iterator it = _customHandlers.find( name );
     if( it != _customHandlers.end( ) )
     {
       _customHandlers.erase( it );

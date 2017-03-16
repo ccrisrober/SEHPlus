@@ -51,11 +51,11 @@ public:
     registerEvent( this, &DockGroupTreeView::onCustomMessage );
     registerEvent( this, &DockGroupTreeView::onSelection );
   }
-  void onCustomMessage( const CustomEvent* e )
+  void onCustomMessage( CustomEvent* e )
   {
     std::cout << "DockGroupTreeView: " << e->getValue( ) << std::endl;
   }
-  void onSelection( const SelectionEvent* e )
+  void onSelection( SelectionEvent* e )
   {
     std::cout << e->id( ) << std::endl;
   }
@@ -71,9 +71,10 @@ public:
   {
     registerEvent( this, &SecondTreeView::onCustomMessage );
   }
-  void onCustomMessage( const CustomEvent* e )
+  void onCustomMessage( CustomEvent* e )
   {
     std::cout << "SecondTreeView: " << e->getValue( ) << std::endl;
+    //e->stopPropagation();
   }
 };
 
@@ -92,8 +93,14 @@ public:
 
 int main( )
 {
-  auto ev = new CustomEvent( 5 );
-  auto dGroupTreeView = new DockGroupTreeView( );
+    auto ss = new SecondTreeView();
+    auto sss = new SubSecondTreeView();
+    ss->addChildEventHandler(sss);
+    ss->dispatchEvent(new CustomEvent(1), true);
+    sss->removeEvent<CustomEvent>();
+    ss->dispatchEvent(new CustomEvent(1), true);
+
+  /*auto dGroupTreeView = new DockGroupTreeView( );
   dGroupTreeView->dispatchEvent( new CustomEvent( 40 ), true );
   std::cout << std::endl << std::endl;
   dGroupTreeView->dispatchEvent( new SelectionEvent( "hola" ) );
@@ -122,7 +129,7 @@ int main( )
   ss->dispatchEvent( new SelectionEvent( "adios" ) );
   std::cout << std::endl << std::endl;
   ss->dispatchEvent( new CustomEvent( 20 ) );
-  std::cout << std::endl << std::endl;
+  std::cout << std::endl << std::endl;*/
 
   system( "PAUSE" );
 }

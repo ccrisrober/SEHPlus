@@ -6,7 +6,7 @@
 None
 
 ## Building
-MB ++ is based on Cmake.
+SEH++ is based on Cmake.
 
 ```sh
 $ git clone https://github.com/maldicion069/sehplus.git
