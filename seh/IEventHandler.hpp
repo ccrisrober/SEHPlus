@@ -8,6 +8,7 @@
 
 #ifndef SEH_WITH_EVENT_PROPAGATION
 #include <iostream>
+#include <vector>
 #endif
 
 namespace seh
@@ -16,9 +17,9 @@ namespace seh
   {
   public:
     virtual ~HandlerFn( void ) {}
-    void exec( const Event* event ) { call( event ); }
+    void exec( Event* event ) { call( event ); }
   private:
-    virtual void call( const Event* ) = 0;
+    virtual void call( Event* ) = 0;
   };
   template <class T, class EventTmpl>
   class EventFunctionHandler : public HandlerFn
@@ -29,9 +30,8 @@ namespace seh
       : _instance( instance )
       , _fn( memFn )
     {
-    };
-
-    void call( const Event* e );
+    }
+    void call( Event* e );
   private:
     T* _instance;
     MemberFunc _fn;
@@ -42,11 +42,16 @@ namespace seh
     using CustomHandlers = std::unordered_map<std::string, HandlerFn*>;
   public:
     SEH_API
-    virtual ~IEventHandler( );
+    virtual ~IEventHandler( void );
     SEH_API
-    void dispatchEvent( const Event* e, const bool& propagation = false );
+    void dispatchEvent( Event* e, const bool& propagation = false );
     SEH_API
     void removeEvent( const Event* );
+    SEH_API
+    void removeEvent( const std::string name );
+
+    template<class EventTmpl>
+    void removeEvent( );
 
     template <class T, class EventTmpl>
     void registerEvent( T*, void ( T::*evFn )( EventTmpl* ) );

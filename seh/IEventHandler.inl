@@ -5,13 +5,20 @@ _customHandlers[ EventTmpl::StaticGetUID( ) ] = new EventFunctionHandler<T, Even
 }
 
 template<class EventTmpl>
+void IEventHandler::removeEvent( )
+{
+  auto it = _customHandlers.find( EventTmpl::StaticGetUID( ) );
+  _customHandlers.erase( it );
+}
+
+template<class EventTmpl>
 bool IEventHandler::hasEvent( )
 {
   return _customHandlers.find( EventTmpl::StaticGetUID( ) ) != _customHandlers.end( );
 }
 
 template <class T, class EventTmpl>
-void EventFunctionHandler<T, EventTmpl>::call( const Event* e )
+void EventFunctionHandler<T, EventTmpl>::call( Event* e )
 {
   ( _instance->*_fn )( static_cast< EventTmpl* >( e ) );
 }

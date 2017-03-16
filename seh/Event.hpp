@@ -16,13 +16,31 @@ typedef std::string EventUID;
 
 namespace seh
 {
+  class IEventHandler;
   class Event
   {
+    friend class IEventHandler;
   public:
     SEH_API
     virtual EventUID GetUID( ) const = 0;
+    SEH_API
+    void stopPropagation( void )
+    {
+      _propagation = false;
+    }
+  private:
+    bool isEventPropagation( )
+    {
+        return _propagation;
+    }
+
+    bool _propagation;
   protected:
-    virtual ~Event() {};
+    Event( )
+    : _propagation( true )
+    {
+    }
+    virtual ~Event() {}
   };
 }
 
