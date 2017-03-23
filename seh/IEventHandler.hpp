@@ -44,7 +44,7 @@ namespace seh
     SEH_API
     virtual ~IEventHandler( void );
     SEH_API
-    void dispatchEvent( Event* e, const bool& propagation = false );
+    virtual void dispatchEvent( Event* e, const bool& propagation = false );
     SEH_API
     void removeEvent( const Event* );
     SEH_API

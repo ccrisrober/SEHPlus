@@ -19,6 +19,7 @@ namespace seh
     if( it != _customHandlers.end( ) )
     {
       it->second->exec( e );
+
 #ifdef SEH_EVENT_PROPAGATION
       if( propagation )
       {
@@ -33,6 +34,7 @@ namespace seh
         }
       }
 #endif
+      
     }
   }
 
