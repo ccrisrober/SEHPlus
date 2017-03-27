@@ -112,12 +112,36 @@ public:
 
 int main( )
 {
-  auto ss = new SecondTreeView();
-  auto sss = new SubSecondTreeView();
-  ss->addChildEventHandler(sss);
-  ss->dispatchEvent(new CustomEvent(1), true);
-  sss->removeEvent<CustomEvent>();
-  ss->dispatchEvent(new CustomEvent(1), true);
+  auto dGroupTreeView = new DockGroupTreeView( );
+  dGroupTreeView->dispatchEvent( new CustomEvent( 40 ), true );
+  std::cout << std::endl << std::endl;
+  dGroupTreeView->dispatchEvent( new SelectionEvent( "hola" ) );
+  std::cout << std::endl << std::endl;
+  dGroupTreeView->dispatchEvent( new CustomEvent( 20 ) );
+  std::cout << std::endl << std::endl;
+
+  auto ss = new SecondTreeView( );
+  ss->dispatchEvent( new CustomEvent( 10 ), true );
+  std::cout << std::endl << std::endl;
+  auto sss = new SubSecondTreeView( );
+  ss->addChildEventHandler( sss );
+
+  dGroupTreeView->addChildEventHandler( ss );
+  dGroupTreeView->dispatchEvent( new CustomEvent( 40 ), true );
+  std::cout << std::endl << std::endl;
+
+  std::cout << ss->hasEvent( new CustomEvent( 10 ) ) << std::endl;
+  std::cout << ss->hasEvent( SelectionEvent::StaticGetUID( ) ) << std::endl;
+  std::cout << ss->hasEvent<SelectionEvent>( ) << std::endl;
+  std::cout << ss->hasEvent<CustomEvent>( ) << std::endl;
+
+
+  ss->dispatchEvent( new CustomEvent( 40 ), true );
+  std::cout << std::endl << std::endl;
+  ss->dispatchEvent( new SelectionEvent( "adios" ) );
+  std::cout << std::endl << std::endl;
+  ss->dispatchEvent( new CustomEvent( 20 ) );
+  std::cout << std::endl << std::endl;
 
   // system( "PAUSE" );
 }

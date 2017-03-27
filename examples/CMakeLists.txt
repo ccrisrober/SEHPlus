@@ -10,3 +10,11 @@ set( SEHEXAMPLE_LINK_LIBRARIES
   seh
 )
 common_application( sehExample )
+
+
+set( SEHEXAMPLE2_HEADERS )
+set( SEHEXAMPLE2_SOURCES example2.cpp )
+set( SEHEXAMPLE2_LINK_LIBRARIES
+  seh
+)
+common_application( sehExample2 )

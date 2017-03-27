@@ -6,7 +6,7 @@
 None
 
 ## Building
-SEH++ is based on Cmake.
+SEH++ is built on CMake and C++
 
 ```sh
 $ git clone https://github.com/maldicion069/sehplus.git
@@ -17,6 +17,4 @@ $ make
 ```
 License
 ----
-MIT
-
-**Free Software, Hell Yeah!**
+GNU GPL
