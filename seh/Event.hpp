@@ -26,7 +26,8 @@
 
 typedef std::string EventUID;
 
-#define IMPLEMENT_EVENT(__CLASS__) \
+#define SEH_IMPLEMENT_EVENT(__CLASS__) \
+public: \
   static EventUID StaticGetUID( ) { \
     static std::string sUID = #__CLASS__; \
     return ( EventUID ) sUID; /* This will be unique in the executable! */ \

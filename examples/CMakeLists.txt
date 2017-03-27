@@ -18,3 +18,21 @@ set( SEHEXAMPLE2_LINK_LIBRARIES
   seh
 )
 common_application( sehExample2 )
+
+
+
+set( SEHREACTIVEEXAMPLE_HEADERS )
+set( SEHREACTIVEEXAMPLE_SOURCES reactiveExample.cpp )
+set( SEHREACTIVEEXAMPLE_LINK_LIBRARIES
+  seh
+)
+common_application( sehReactiveExample )
+
+
+
+set( SEHREACTIVEEXAMPLE2_HEADERS )
+set( SEHREACTIVEEXAMPLE2_SOURCES reactiveExample2.cpp )
+set( SEHREACTIVEEXAMPLE2_LINK_LIBRARIES
+  seh
+)
+common_application( sehReactiveExample2 )
