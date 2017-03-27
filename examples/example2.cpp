@@ -25,7 +25,7 @@ using namespace seh;
 class CustomEvent : public Event
 {
 public:
-  IMPLEMENT_EVENT( CustomEvent )
+  SEH_IMPLEMENT_EVENT( CustomEvent )
   CustomEvent( int v ) : _value( v ) {}
 
   int getValue( )	const	{ return _value; }
@@ -48,7 +48,7 @@ public:
 class SelectionEvent : public Event
 {
 public:
-  IMPLEMENT_EVENT( SelectionEvent )
+  SEH_IMPLEMENT_EVENT( SelectionEvent )
     SelectionEvent( std::string id )
     : Event( )
     , _id( id )

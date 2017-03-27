@@ -17,8 +17,8 @@
  *
  **/
 
-#ifndef __EVENT_H__
-#define __EVENT_H__
+#ifndef __SEH_EVENT_H__
+#define __SEH_EVENT_H__
 
 #include <string>
 
@@ -26,7 +26,8 @@
 
 typedef std::string EventUID;
 
-#define IMPLEMENT_EVENT(__CLASS__) \
+#define SEH_IMPLEMENT_EVENT(__CLASS__) \
+public: \
   static EventUID StaticGetUID( ) { \
     static std::string sUID = #__CLASS__; \
     return ( EventUID ) sUID; /* This will be unique in the executable! */ \
@@ -63,4 +64,4 @@ namespace seh
   };
 }
 
-#endif /* __EVENT_H__ */
+#endif /* __SEH_EVENT_H__ */

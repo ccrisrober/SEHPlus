@@ -20,7 +20,8 @@
 template <class T, class EventTmpl>
 void IEventHandler::registerEvent( T* o, void ( T::*evFn )( EventTmpl* ) )
 {
-_customHandlers[ EventTmpl::StaticGetUID( ) ] = new EventFunctionHandler<T, EventTmpl>( o, evFn );
+  _customHandlers[ EventTmpl::StaticGetUID( ) ] = 
+    new EventFunctionHandler<T, EventTmpl>( o, evFn );
 }
 
 template<class EventTmpl>
@@ -33,7 +34,8 @@ void IEventHandler::removeEvent( )
 template<class EventTmpl>
 bool IEventHandler::hasEvent( )
 {
-  return _customHandlers.find( EventTmpl::StaticGetUID( ) ) != _customHandlers.end( );
+  return _customHandlers.find( EventTmpl::StaticGetUID( ) ) 
+    != _customHandlers.end( );
 }
 
 template <class T, class EventTmpl>

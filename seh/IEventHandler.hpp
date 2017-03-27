@@ -17,15 +17,17 @@
  *
  **/
 
-#ifndef __IEVENT_HANDLER_H__
-#define __IEVENT_HANDLER_H__
+#ifndef __SEH_IEVENT_HANDLER_H__
+#define __SEH_IEVENT_HANDLER_H__
 
 #include "Event.hpp"
 #include <unordered_map>
 
 #include <seh/api.h>
 
-#ifndef SEH_WITH_EVENT_PROPAGATION
+#define SEH_EVENT_PROPAGATION  // TODO: HARDCODED
+
+#ifndef SEH_EVENT_PROPAGATION
 #include <iostream>
 #include <vector>
 #endif
@@ -67,7 +69,7 @@ namespace seh
     SEH_API
     void removeEvent( const Event* );
     SEH_API
-    void removeEvent( const std::string name );
+    void removeEvent( const std::string& name );
 
     template<class EventTmpl>
     void removeEvent( );
@@ -78,7 +80,7 @@ namespace seh
     SEH_API
     bool hasEvent( const Event* );
     SEH_API
-    bool hasEvent( const std::string name );
+    bool hasEvent( const std::string& name );
 
     template<class EventTmpl>
     bool hasEvent( );
@@ -86,6 +88,7 @@ namespace seh
   public:
     SEH_API
     void addChildEventHandler( IEventHandler* h );
+
 #ifdef SEH_EVENT_PROPAGATION
   protected:
     std::vector< IEventHandler*> _childrenHandlers;
@@ -98,4 +101,4 @@ namespace seh
   #include "IEventHandler.inl"
 }
 
-#endif /* __IEVENT_HANDLER_H__ */
+#endif /* __SEH_IEVENT_HANDLER_H__ */

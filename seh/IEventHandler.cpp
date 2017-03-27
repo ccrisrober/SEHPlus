@@ -44,7 +44,7 @@ namespace seh
       {
         if ( !e->isEventPropagation( ) )
         {
-          std::cout << "STOP PROP" << std::endl;
+          //std::cout << "STOP PROP" << std::endl;
           return;
         }
         for( auto ieh : _childrenHandlers )
@@ -78,7 +78,7 @@ namespace seh
     }
   }
 
-  void IEventHandler::removeEvent( const std::string name )
+  void IEventHandler::removeEvent( const std::string& name )
   {
     CustomHandlers::iterator it = _customHandlers.find( name );
     if( it != _customHandlers.end( ) )
@@ -92,7 +92,7 @@ namespace seh
     return _customHandlers.find( e->GetUID( ) ) != _customHandlers.end( );
   }
 
-  bool IEventHandler::hasEvent( const std::string name )
+  bool IEventHandler::hasEvent( const std::string& name )
   {
     return _customHandlers.find( name ) != _customHandlers.end( );
   }
