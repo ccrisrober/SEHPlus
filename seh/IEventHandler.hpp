@@ -25,9 +25,7 @@
 
 #include <seh/api.h>
 
-#define SEH_EVENT_PROPAGATION  // TODO: HARDCODED
-
-#ifndef SEH_EVENT_PROPAGATION
+#ifdef SEH_EVENT_PROPAGATION
 #include <iostream>
 #include <vector>
 #endif
